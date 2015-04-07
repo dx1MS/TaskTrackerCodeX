@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="TaskTrackerCodeX:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="TaskTrackerCodeX.war">
+      <element id="artifact" artifact-name="TaskTrackerCodeX:war exploded" />
+    </root>
+  </artifact>
+</component>
