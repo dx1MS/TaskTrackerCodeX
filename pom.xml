@@ -9,6 +9,7 @@
 
     <properties>
         <spring.version>4.1.1.RELEASE</spring.version>
+        <hibernate.version>4.2.5.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -56,6 +57,33 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-envers</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.0.2.GA</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+        </dependency>
+        <!--<dependency>    todo коннектор H2 ????-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.13</version>-->
+        <!--</dependency>-->
+        <!-- end -->
     </dependencies>
 
     <build>

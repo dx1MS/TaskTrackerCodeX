@@ -1,4 +1,4 @@
-package com.codex.busel;
+package com.codex.busel.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
