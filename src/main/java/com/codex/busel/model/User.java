@@ -2,13 +2,12 @@ package com.codex.busel.model;
 
 import javax.persistence.*;
 
-@Entity
-@SequenceGenerator(name = "PK", sequenceName = "t_user_seq")
-@Table(name = "USER")
+//@Entity
+//@Table(name = "USER")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PK")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ID")
     private Long userId;
 
@@ -19,4 +18,27 @@ public class User {
     @ManyToOne // todo (fetch = FetchType.LAZY,optional=true)
     private Role role;
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

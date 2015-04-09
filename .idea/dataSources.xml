@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1040198525">
+    <data-source source="LOCAL" name="H2 -xc" uuid="51d97879-b1cf-4344-9817-54d9784c8101">
+      <driver-ref>h2.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.h2.Driver</jdbc-driver>
+      <jdbc-url>jdbc:h2:file:$PROJECT_DIR$/../../../руль/testDEL</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
