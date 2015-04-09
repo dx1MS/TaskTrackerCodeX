@@ -1,8 +1,0 @@
-target
-.artifacts
-.idea/**
-*.class
-*.iml
-*.ipr
-*.iws
-*.ids
