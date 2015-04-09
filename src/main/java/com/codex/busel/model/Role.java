@@ -2,13 +2,12 @@ package com.codex.busel.model;
 
 import javax.persistence.*;
 
-@Entity
-@SequenceGenerator(name = "PK", sequenceName = "role_seq")
-@Table(name = "ROLE")
+//@Entity
+//@Table(name = "ROLE")
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PK")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ROLE_ID")
     private Long roleID;
 
@@ -17,7 +16,7 @@ public class Role {
 
     @Column(name = "USER_ID")
     @OneToMany
-    @PrimaryKeyJoinColumn
+    // @PrimaryKeyJoinColumn
     private User user; // todo Set<User> userList ???
 
     public Role() {
