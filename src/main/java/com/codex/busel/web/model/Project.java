@@ -1,4 +1,4 @@
-package com.codex.busel.model;
+package com.codex.busel.web.model;
 
 import javax.persistence.*;
 import java.util.ArrayList;

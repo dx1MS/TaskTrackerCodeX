@@ -1,7 +1,7 @@
-package com.codex.busel.dao;
+package com.codex.busel.web.dao.impl;
 
-import com.codex.busel.model.Project;
-import com.codex.busel.model.Task;
+import com.codex.busel.web.dao.TaskDao;
+import com.codex.busel.web.model.Task;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,9 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
-/**
- * Created by u on 09.04.2015.
- */
 @Repository
 @Transactional
 public class TaskDaoImpl implements TaskDao {

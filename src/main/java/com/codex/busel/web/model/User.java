@@ -1,4 +1,4 @@
-package com.codex.busel.model;
+package com.codex.busel.web.model;
 
 import javax.persistence.*;
 
@@ -13,6 +13,17 @@ public class User {
 
     @Column(name = "USER_NAME")
     private String userName;
+
+    @Column(name = "password")
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     @Column(name = "F_ROLE_ID")
     @ManyToOne // todo (fetch = FetchType.LAZY,optional=true)

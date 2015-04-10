@@ -1,13 +1,9 @@
-package com.codex.busel.dao;
+package com.codex.busel.web.dao;
 
-import com.codex.busel.model.Project;
-import com.codex.busel.model.Task;
+import com.codex.busel.web.model.Task;
 
 import java.util.List;
 
-/**
- * Created by u on 09.04.2015.
- */
 public interface TaskDao {
 
     void merge(Task project);

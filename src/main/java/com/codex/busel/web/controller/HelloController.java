@@ -1,27 +1,21 @@
-package com.codex.busel.controller;
+package com.codex.busel.web.controller;
 
-import com.codex.busel.dao.ProjectDao;
-import com.codex.busel.dao.TaskDao;
-import com.codex.busel.model.Project;
-import com.codex.busel.model.Task;
+import com.codex.busel.web.dao.ProjectDao;
+import com.codex.busel.web.dao.TaskDao;
+import com.codex.busel.web.model.Project;
+import com.codex.busel.web.model.Task;
+import com.codex.busel.web.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.util.Collection;
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
-
 public class HelloController {
 
 	@Autowired
@@ -56,6 +50,9 @@ public class HelloController {
 
 	@PostConstruct
 	public void init() {
+		User user = new User();
+
+
 		Project project = new Project();
 		project.setProjectName("test");
 
