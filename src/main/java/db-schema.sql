@@ -12,3 +12,6 @@ CREATE TABLE PUBLIC.ROLE
     user_id INT NOT NULL
 );
 ALTER TABLE PUBLIC.ROLE ADD CONSTRAINT unique_role_id UNIQUE (role_id);
+
+
+

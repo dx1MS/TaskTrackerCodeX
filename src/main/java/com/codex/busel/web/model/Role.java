@@ -1,9 +1,10 @@
 package com.codex.busel.web.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
-//@Entity
-//@Table(name = "ROLE")
+@Entity
+@Table(name = "ROLE")
 public class Role {
 
     @Id
@@ -14,10 +15,10 @@ public class Role {
     @Column(name = "ROLE_NAME")
     private String roleName;
 
-    @Column(name = "USER_ID")
-    @OneToMany
+//    @Column(name = "USER_ID")
+    @OneToMany(mappedBy = "role")
     // @PrimaryKeyJoinColumn
-    private User user; // todo Set<User> userList ???
+    private Set<User> userList; // todo Set<User> userList ???
 
     public Role() {
     }
@@ -38,12 +39,12 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public User getUser() {
-        return user;
+    public Set<User> getUserList() {
+        return userList;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserList(Set<User> userList) {
+        this.userList = userList;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Role {
 
         if (roleName != null ? !roleName.equals(role1.roleName) : role1.roleName != null) return false;
         if (!roleID.equals(role1.roleID)) return false;
-        if (user != null ? !user.equals(role1.user) : role1.user != null) return false;
+//        if (user != null ? !user.equals(role1.user) : role1.user != null) return false;
             return true;
         }
 
@@ -63,7 +64,7 @@ public class Role {
     public int hashCode() {
         int result = roleID.hashCode();
         result = 31 * result + (roleName != null ? roleName.hashCode() : 0);
-        result = 31 * result + (user != null ? user.hashCode() : 0);
+//        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 }

@@ -2,8 +2,8 @@ package com.codex.busel.web.model;
 
 import javax.persistence.*;
 
-//@Entity
-//@Table(name = "USER")
+@Entity
+@Table(name = "USER")
 public class User {
 
     @Id
@@ -17,6 +17,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "enabled")
+    private int enabled;
+
+    @Column(name = "ROLE")
+    private String role;
+
+
     public String getPassword() {
         return password;
     }
@@ -25,9 +32,9 @@ public class User {
         this.password = password;
     }
 
-    @Column(name = "F_ROLE_ID")
-    @ManyToOne // todo (fetch = FetchType.LAZY,optional=true)
-    private Role role;
+//    @JoinColumn(name = "USER_ROLE_ID")
+//    @ManyToOne // todo (fetch = FetchType.LAZY,optional=true)
+//    private Role role;
 
     public Long getUserId() {
         return userId;
@@ -45,11 +52,32 @@ public class User {
         this.userName = userName;
     }
 
-    public Role getRole() {
+//    public Role getRole() {
+//        return role;
+//    }
+//
+//    public void setRole(Role role) {
+//        this.role = role;
+//    }
+
+
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
+    }
+
+    public int getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(int enabled) {
+        this.enabled = enabled;
+    }
+
+    public String toString() {
+        return userName;
     }
 }

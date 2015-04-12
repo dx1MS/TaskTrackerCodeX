@@ -4,11 +4,9 @@ import com.codex.busel.web.model.Task;
 
 import java.util.List;
 
-public interface TaskDao {
+public interface TaskDao extends GenericDao<Task> {
 
     void merge(Task project);
-
-    Task findById(Long id);
 
     List<Task>  findAll();
 }

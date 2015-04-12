@@ -11,6 +11,7 @@
         <spring.version>4.1.1.RELEASE</spring.version>
         <spring.security.version>3.2.3.RELEASE</spring.security.version>
         <hibernate.version>4.2.5.Final</hibernate.version>
+        <mysql.connector.version>5.1.30</mysql.connector.version>
     </properties>
 
     <dependencies>
@@ -104,6 +105,11 @@
             <version>1.0.0.GA</version>
         </dependency>
         <!-- end -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.connector.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -139,6 +145,26 @@
             <version>${spring.security.version}</version>
         </dependency>
         <!-- end Security -->
+
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+
+
+        <!--<dependency>-->
+            <!--<groupId>org.slf4j</groupId>-->
+            <!--<artifactId>slf4j-log4j12</artifactId>-->
+            <!--<version>1.7.5</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <build>

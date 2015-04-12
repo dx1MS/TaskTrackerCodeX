@@ -1,6 +1,7 @@
 package com.codex.busel.web.dao.impl;
 
 import com.codex.busel.web.dao.TaskDao;
+import com.codex.busel.web.model.Project;
 import com.codex.busel.web.model.Task;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,15 +12,9 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@Transactional
-public class TaskDaoImpl implements TaskDao {
-
-    @PersistenceContext
-    EntityManager em;
-
+public class TaskDaoImpl extends GenericDaoImpl<Task> implements TaskDao {
 
     @Override
-    @Transactional(readOnly = false)
     public void merge(Task task) {
         if (task.getId() == null) {
             em.persist(task);
@@ -29,13 +24,6 @@ public class TaskDaoImpl implements TaskDao {
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public Task findById(Long id) {
-        return em.find(Task.class, id);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<Task> findAll() {
         Query query = em.createQuery("SELECT p FROM Task p");
         List<Task> projects = query.getResultList();

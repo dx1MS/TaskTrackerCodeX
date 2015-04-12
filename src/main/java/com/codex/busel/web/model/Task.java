@@ -23,7 +23,18 @@ public class Task {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    private Developer developer;
+    private User user;
+
+    @Transient
+    private Long userId;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
     public Long getId() {
         return id;
@@ -33,11 +44,11 @@ public class Task {
         this.id = id;
     }
 
-    public Developer getDeveloper() {
-        return developer;
+    public User getUser() {
+        return user;
     }
 
-    public void setDeveloper(Developer developer) {
-        this.developer = developer;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

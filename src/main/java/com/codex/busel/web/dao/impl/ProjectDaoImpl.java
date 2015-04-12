@@ -12,37 +12,17 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
-@Transactional
-public class ProjectDaoImpl implements ProjectDao {
+public class ProjectDaoImpl extends GenericDaoImpl<Project> implements ProjectDao {
 
     @PersistenceContext
-    EntityManager em;
-
-
-    @Override
-    @Transactional(readOnly = false)
-    public void merge(Project project) {
-        if (project.getProjectId() == null) {
-            em.persist(project);
-        } else {
-            em.merge(project);
-        }
-    }
+    private EntityManager em;
 
     @Override
-    @Transactional(readOnly = true)
-    public Project findById(Long id) {
-        return em.find(Project.class, id);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
     public List<Task> findTasksByProjectId(Long id) {
         return em.find(Project.class, id).getTasks();
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<Project> findAll() {
         Query query = em.createQuery("SELECT p FROM Project p");
         List<Project> projects = query.getResultList();
