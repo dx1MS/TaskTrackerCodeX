@@ -1,6 +1,5 @@
 package com.codex.busel.web.dao;
 
-import com.codex.busel.web.model.Task;
 import com.codex.busel.web.model.User;
 
 import java.util.List;

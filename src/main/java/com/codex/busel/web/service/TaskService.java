@@ -12,11 +12,11 @@ public interface TaskService {
 
     List<Task>  findAll();
 
-//    Task create(Task t);
-//
-//    void delete(Object id);
-//
-//    Task find(Object id);
+    Task create(Task t);
 
-//    Task update(Task t);
+    void delete(Object id);
+
+    Task find(Object id);
+
+    Task update(Task t);
 }

@@ -8,5 +8,7 @@ public interface TaskDao extends GenericDao<Task> {
 
     void merge(Task project);
 
+    List<Task> findTasksByUserId(Long id);
+
     List<Task>  findAll();
 }

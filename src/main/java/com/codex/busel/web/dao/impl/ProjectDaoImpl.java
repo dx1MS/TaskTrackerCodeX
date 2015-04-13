@@ -4,7 +4,6 @@ import com.codex.busel.web.dao.ProjectDao;
 import com.codex.busel.web.model.Project;
 import com.codex.busel.web.model.Task;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

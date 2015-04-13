@@ -6,6 +6,7 @@ import com.codex.busel.web.model.Project;
 import com.codex.busel.web.model.Task;
 import com.codex.busel.web.model.User;
 import com.codex.busel.web.service.ProjectService;
+import com.codex.busel.web.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,6 +26,9 @@ public class ManagerController {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private TaskService taskService;
 
     @RequestMapping("/")
     public String start() {
@@ -50,6 +54,7 @@ public class ManagerController {
         project = projectService.merge(project);
         addDeveloperMap(model);
         model.addAttribute("projectId", project.getProjectId());
+        model.addAttribute("message", "project details(tasks)");
         return "projectDetails";
     }
 
@@ -79,12 +84,13 @@ public class ManagerController {
     public String saveProject(ModelMap model, @ModelAttribute("project") Project project) {
         if (project.getTasks() != null) {
             for (Task task : project.getTasks()) {
-                taskDao.merge(task);
+                taskService.merge(task);
             }
         }
         projectService.merge(project);
 
         addDeveloperMap(model);
+        model.addAttribute("projectId", project.getProjectId());
 
         return "projectDetails";
     }
@@ -117,10 +123,11 @@ public class ManagerController {
                 task.setUser(user);
             }
 
-            taskDao.merge(task);
+            //taskDao.merge(task);
 
             Project project = projectService.find(projectId);
             project.addTask(task);
+            taskService.merge(task);
             projectService.update(project);
 
         }
