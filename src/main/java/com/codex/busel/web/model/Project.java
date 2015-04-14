@@ -11,7 +11,7 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PROJECT_ID")
-    private Long projectId;
+    private Long id;
 
     @Column(name = "PROJECT_NAME")
     private String projectName;
@@ -20,11 +20,11 @@ public class Project {
     List<Task> tasks;
 
     public Long getProjectId() {
-        return projectId;
+        return id;
     }
 
     public void setProjectId(Long projectId) {
-        this.projectId = projectId;
+        this.id = projectId;
     }
 
     public String getProjectName() {

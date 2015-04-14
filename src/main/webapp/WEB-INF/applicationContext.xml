@@ -19,17 +19,17 @@
     <!--<context:annotation-config/>-->
 
     <!--<aop:aspectj-autoproxy/>-->
-
-    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
-        <!--<property name="driverClassName" value="org.h2.Driver"/>-->
-        <!--<property name="url" value="jdbc:h2:file:h2\db"/>-->
-        <!--<property name="username" value="sa"/>-->
-        <!--<property name="password" value=""/>-->
-    <!--</bean>-->
+    <!-- <property name="url" value="jdbc:h2:file:h2\db -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:file:E:/doc/CodeX/project/TaskTrackerCodeX/codex.h2.db"/>
+        <property name="username" value="root"/>
+        <property name="password" value="password"/>
+    </bean>
     <!--тру-->
     <!--<jdbc:embedded-database id="dataSource" type="H2">-->
-    <!--<jdbc:script location="classpath:db-schema.sql"/>-->
-    <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
+        <!--<jdbc:script location="classpath:db-schema.sql"/>-->
+        <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
     <!--</jdbc:embedded-database>-->
 
     <!--<jdbc:embedded-database id="dataSource" type="H2">-->
@@ -37,12 +37,12 @@
         <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
     <!--</jdbc:embedded-database>-->
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/taskcodex" />
-        <property name="username" value="root" />
-        <property name="password" value="password" />
-    </bean>
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver" />-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/taskcodex" />-->
+        <!--<property name="username" value="root" />-->
+        <!--<property name="password" value="password" />-->
+    <!--</bean>-->
 
     <tx:annotation-driven/>
 
