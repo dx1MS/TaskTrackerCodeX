@@ -7,6 +7,9 @@ import java.util.Set;
 @Table(name = "ROLE")
 public class Role {
 
+    @Enumerated(EnumType.STRING)
+    private ListRole listRole;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ROLE_ID")
