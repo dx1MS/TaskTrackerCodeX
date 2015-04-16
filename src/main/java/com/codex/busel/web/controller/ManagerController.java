@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
@@ -21,8 +22,8 @@ public class ManagerController {
     @Autowired
     private ProjectService projectService;
 
-    @Autowired
-    private TaskDao taskDao;
+//    @Autowired
+//    private TaskDao taskDao;
 
     @Autowired
     private UserDao userDao;
@@ -138,26 +139,26 @@ public class ManagerController {
         return "projectDetails";
     }
 
-//	@PostConstruct
-//	public void init() {
-//
-//		Project project = new Project();
-//		project.setProjectName("test");
-//
-//		projectDao.merge(project);
-//
-//		Task task1 = new Task();
-//		task1.setDescr("descr1");
-//		project.addTask(task1);
-//		taskDao.merge(task1);
-//
-//		Task task2 = new Task();
-//		task2.setDescr("descr2");
-//		project.addTask(task2);
-//		taskDao.merge(task2);
-//
-//		projectDao.merge(project);
-//	}
+	@PostConstruct
+	public void init() {
+
+		Project project = new Project();
+		project.setProjectName("Project1");
+
+        projectService.merge(project);
+
+		Task task1 = new Task();
+		task1.setDescr("Task1_descr");
+		project.addTask(task1);
+        taskService.merge(task1);
+
+		Task task2 = new Task();
+		task2.setDescr("Task2_descr");
+		project.addTask(task2);
+        taskService.merge(task2);
+
+        projectService.merge(project);
+	}
 
     @ModelAttribute("project")
     public Project populateProject() {
