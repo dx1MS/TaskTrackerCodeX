@@ -13,25 +13,19 @@
                            http://www.springframework.org/schema/tx
                            http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 
-    <!--suppress SpringModelInspection -->
-    <!--<context:property-placeholder location="/WEB-INF/classes/*.properties"/>-->
-
-    <!--<context:annotation-config/>-->
-
-    <!--<aop:aspectj-autoproxy/>-->
     <!-- <property name="url" value="jdbc:h2:file:h2\db -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:file:E:/doc/CodeX/project/TaskTrackerCodeX/codex.h2.db"/>
+        <property name="url" value="jdbc:h2:file:d:/doc/java/CodeX/project/TaskTrackerCodeX/codex"/>
         <property name="username" value="root"/>
         <property name="password" value="password"/>
     </bean>
-    <!--тру-->
-    <!--<jdbc:embedded-database id="dataSource" type="H2">-->
-        <!--<jdbc:script location="classpath:db-schema.sql"/>-->
-        <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
-    <!--</jdbc:embedded-database>-->
 
+    <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="classpath:com/codex/busel/web/sql/db-schema.sql"/>
+        <jdbc:script location="classpath:com/codex/busel/web/sql/db-test-data.sql"/>
+    </jdbc:initialize-database>
+    <!--тру-->
     <!--<jdbc:embedded-database id="dataSource" type="H2">-->
         <!--<jdbc:script location="classpath:db-schema.sql"/>-->
         <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
@@ -60,8 +54,8 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>-->
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>-->
             </props>
         </property>
 
@@ -70,6 +64,21 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="com.codex.busel.web" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="current_session_context_class">thread</prop>
+                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>-->
+            </props>
+        </property>
+
     </bean>
 
     <!--<import resource="classpath:spring-basic.xml"/>-->

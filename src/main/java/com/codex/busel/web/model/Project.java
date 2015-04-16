@@ -11,20 +11,21 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PROJECT_ID")
-    private Long id;
+    private Long projectId;
 
     @Column(name = "PROJECT_NAME")
     private String projectName;
 
     @OneToMany(fetch = FetchType.EAGER)
-    List<Task> tasks;
+    @JoinColumn(name = "PROJECT_ID")
+    private List<Task> tasks;
 
     public Long getProjectId() {
-        return id;
+        return projectId;
     }
 
     public void setProjectId(Long projectId) {
-        this.id = projectId;
+        this.projectId = projectId;
     }
 
     public String getProjectName() {

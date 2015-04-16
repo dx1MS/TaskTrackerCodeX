@@ -12,7 +12,7 @@ public class TaskDaoImpl extends GenericDaoImpl<Task> implements TaskDao {
 
     @Override
     public void merge(Task task) {
-        if (task.getId() == null) {
+        if (task.getTaskId() == null) {
             em.persist(task);
         } else {
             em.merge(task);

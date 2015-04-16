@@ -8,11 +8,28 @@ public class Task {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "TASK_ID")
+    private Long taskId;
 
     @Column
     private String descr;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID")
+    //@JoinTable(name = "USER", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "TASK_ID"))
+    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PROJECT_ID")
+    private Project project;
+
+    public Long getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(Long taskId) {
+        this.taskId = taskId;
+    }
 
     public String getDescr() {
         return descr;
@@ -20,20 +37,6 @@ public class Task {
 
     public void setDescr(String descr) {
         this.descr = descr;
-    }
-
-    @OneToOne(fetch = FetchType.EAGER)
-    private User user;
-
-    @Transient
-    private Long userId;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {
@@ -44,12 +47,11 @@ public class Task {
         this.user = user;
     }
 
-    //todo userId??
-    public Long getUserId() {
-        return userId;
+    public Project getProject() {
+        return project;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

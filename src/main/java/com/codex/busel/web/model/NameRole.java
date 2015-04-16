@@ -1,5 +1,5 @@
 package com.codex.busel.web.model;
 
-public enum ListRole {
+public enum NameRole {
     MANAGER, DEVELOPER
 }

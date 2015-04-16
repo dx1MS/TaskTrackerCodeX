@@ -11,45 +11,31 @@ public class UserRole {
 
     @Id
     @Column(name = "USER_ROLE_ID")
-    private Long id;
+    private Long userRoleId;
 
     @Enumerated(EnumType.STRING)
-    private ListRole listRole;
+    @Column(name = "ROLE_NAME")
+    private NameRole nameRole;
 
     @Column(name = "USER_ID")
-    @ManyToMany(mappedBy = "userRoles")
+    @ManyToMany
+    @JoinTable (name="USERS_ROLES",
+            joinColumns = {@JoinColumn(name="USER_ROLE_ID")},
+            inverseJoinColumns={@JoinColumn(name="USER_ID")}
+    )
     private Set<User> userList = new HashSet<User>();
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
-//    @Column(name = "ROLE_ID")
-//    private Long roleID;
 
-//    public Long getRoleID() {
-//        return roleID;
-//    }
-//
-//    public void setRoleID(Long roleID) {
-//        this.roleID = roleID;
-//    }
-
-    public ListRole getListRole() {
-        return listRole;
+    public NameRole getNameRole() {
+        return nameRole;
     }
 
-    public void setListRole(ListRole listRole) {
-        this.listRole = listRole;
+    public void setNameRole(NameRole NameRole) {
+        this.nameRole = nameRole;
     }
-
-//    public Set<User> getUserList() {
-//        return userList;
-//    }
 
     public void setUserList(Set<User> userList) {
         this.userList = userList;
     }
-
-
-
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;

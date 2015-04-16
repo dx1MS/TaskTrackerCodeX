@@ -118,8 +118,8 @@ public class ManagerController {
     public String saveTask(@ModelAttribute("task") Task task, ModelMap model, @RequestParam("projectId") Long projectId) {
         if (task != null && task.getDescr() != null) {
 
-            if (task.getUserId() != null) {
-                User user = userDao.find(task.getUserId());
+            if (task.getUser() != null) {
+                User user = userDao.find(task.getUser());
                 task.setUser(user);
             }
 

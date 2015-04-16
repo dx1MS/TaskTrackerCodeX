@@ -20,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task merge(Task task) {
-        if (task.getId() == null) {
+        if (task.getTaskId() == null) {
             task = taskDao.create(task);
         } else {
             task = taskDao.update(task);

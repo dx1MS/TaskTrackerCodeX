@@ -1,4 +1,5 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:context="http://www.springframework.org/schema/context"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -6,14 +7,12 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
+    <http pattern="/css/**" security="none"/>
+    <http pattern="/img/**" security="none"/>
+    <http pattern="/js/**" security="none"/>
 
-    <!--<jdbc:database id="dataSource" type="MySql">-->
-        <!--<jdbc:script location="classpath:db-schema.sql"/>-->
-        <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
-    <!--</jdbc:database>-->
-    <!-- enable use-expressions -->
     <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/projects**" access="hasRole('MANAGER')" />
+            <intercept-url pattern="/projects**" access="hasRole('MANAGER')" />
 
         <!-- access denied page -->
         <access-denied-handler error-page="/403" />
@@ -25,21 +24,22 @@
                 username-parameter="username"
                 password-parameter="password" />
         <logout logout-success-url="/login?logout"  />
+        <!--<remember-me user-service-ref="UserService" key="task_key" />-->
         <!-- enable csrf protection -->
         <csrf/>
     </http>
 
-    <!--authorities-by-username-query = "select u.user_name, r.role_name from roles r, user u where u.USER_ROLE_ID=r.ROLE_ID and u.user_name =?  " /-->
-
-
     <!-- Select users and user_roles from database -->
     <authentication-manager>
-        <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource"
-                               users-by-username-query = "select user_name, password, enabled from user where user_name=?"
-                               authorities-by-username-query = "select u.user_name, u.role from user u where u.user_name =?" />
-                               <!--authorities-by-username-query=-->
-                                       <!--"select user_name, role from user_roles where username =?  " />-->
+        <authentication-provider user-service-ref="userService">
+            <password-encoder ref="passwordHelper" />
+
+            <!--<jdbc-user-service data-source-ref="dataSource"-->
+                               <!--users-by-username-query = "select user_name, password, enabled from user where user_name=?"-->
+                               <!--authorities-by-username-query = "select u.user_name, r.namerole from user u, USERS_ROLES ur, ROLE r-->
+                                    <!--WHERE u.USER_ID=ur.USER_ID and ur.USER_ROLE_ID=r.USER_ROLE_ID and u.USER_NAME=?" />-->
         </authentication-provider>
     </authentication-manager>
 </beans:beans>
+
+<!-- authorities-by-username-query = "select u.user_name, u.role from user u where u.user_name =?" /> -->
