@@ -21,10 +21,10 @@
         <property name="password" value="password"/>
     </bean>
 
-    <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="classpath:com/codex/busel/web/sql/db-schema.sql"/>
-        <jdbc:script location="classpath:com/codex/busel/web/sql/db-test-data.sql"/>
-    </jdbc:initialize-database>
+    <!--<jdbc:initialize-database data-source="dataSource">-->
+        <!--<jdbc:script location="classpath:com/codex/busel/web/sql/db-schema.sql"/>-->
+        <!--<jdbc:script location="classpath:com/codex/busel/web/sql/db-test-data.sql"/>-->
+    <!--</jdbc:initialize-database>-->
     <!--тру-->
     <!--<jdbc:embedded-database id="dataSource" type="H2">-->
         <!--<jdbc:script location="classpath:db-schema.sql"/>-->

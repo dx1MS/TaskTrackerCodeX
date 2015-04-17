@@ -112,6 +112,10 @@ public class User implements UserDetails{
     public String toString() {
         return userName;
     }
+
+//    public void addUserRoles (NameRole nameRole){
+//        userRoles.add(nameRole);
+//    }
 }
 //    @Column(name = "ROLE")
 //    private String role;

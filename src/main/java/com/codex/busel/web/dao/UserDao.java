@@ -8,6 +8,7 @@ public interface UserDao extends GenericDao<User>{
 
     List<User> findDevelopers();
 
+    List<User>  findAll();
 //    void merge(User user);
 //
 //    List<Task> findAll();

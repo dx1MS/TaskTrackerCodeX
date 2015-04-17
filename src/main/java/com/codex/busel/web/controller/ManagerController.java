@@ -1,18 +1,15 @@
 package com.codex.busel.web.controller;
 
-import com.codex.busel.web.dao.TaskDao;
 import com.codex.busel.web.dao.UserDao;
-import com.codex.busel.web.model.Project;
-import com.codex.busel.web.model.Task;
-import com.codex.busel.web.model.User;
+import com.codex.busel.web.model.*;
 import com.codex.busel.web.service.ProjectService;
 import com.codex.busel.web.service.TaskService;
+import com.codex.busel.web.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
@@ -21,6 +18,9 @@ public class ManagerController {
 
     @Autowired
     private ProjectService projectService;
+
+    @Autowired
+    private UserServiceImpl userServiceImpl;
 
 //    @Autowired
 //    private TaskDao taskDao;
@@ -139,36 +139,62 @@ public class ManagerController {
         return "projectDetails";
     }
 
-	@PostConstruct
-	public void init() {
-
-		Project project = new Project();
-		project.setProjectName("Project1");
-
-        projectService.merge(project);
-
-		Task task1 = new Task();
-		task1.setDescr("Task1_descr");
-		project.addTask(task1);
-        taskService.merge(task1);
-
-		Task task2 = new Task();
-		task2.setDescr("Task2_descr");
-		project.addTask(task2);
-        taskService.merge(task2);
-
-        projectService.merge(project);
-	}
-
-    @ModelAttribute("project")
-    public Project populateProject() {
-        Project project = new Project();
-        return project;
-    }
-
-    @ModelAttribute("task")
-    public Task populateTask() {
-        Task task = new Task();
-        return task;
-    }
+//	@PostConstruct
+//	public void init() {
+//        // создаем юзеров man1, dev1
+//        User user1 = new User();
+//        User user2 = new User();
+//        user1.setUserName("man1");
+//        user2.setUserName("dev1");
+//        user1.setPassword("1");
+//        user2.setPassword("1");
+//        user1.setEnabled(1);
+//        user2.setEnabled(1);
+//        userService.merge(user1);
+//        userService.merge(user2);
+//
+////        user1.addUserRoles(NameRole.MANAGER);
+////        user1.addUserRoles(NameRole.DEVELOPER);
+//
+//        // создаем проекты Project1, Project2
+//		Project project1 = new Project();
+//        Project project2 = new Project();
+//		project1.setProjectName("Project1");
+//        project2.setProjectName("Project2");
+//        projectService.merge(project1);
+//        projectService.merge(project2);
+//
+//        // создаем таски Task11_descr - Project1, null(user)
+//        //               Task12_descr - Project1, null
+//        //               Task21_descr - Project2, null
+//		Task task11 = new Task();
+//        Task task12 = new Task();
+//		task11.setDescr("Task11_descr");
+//        task12.setDescr("Task12_descr");
+//        //добавим таски к проектам
+//		project1.addTask(task11);
+//        project1.addTask(task12);
+//        taskService.merge(task11);
+//        taskService.merge(task12);
+//
+//		Task task21 = new Task();
+//		task21.setDescr("Task21_descr");
+//		project2.addTask(task21);
+//        taskService.merge(task21);
+//
+//        projectService.merge(project1);
+//        projectService.merge(project2);
+//	}
+//
+//    @ModelAttribute("project")
+//    public Project populateProject() {
+//        Project project = new Project();
+//        return project;
+//    }
+//
+//    @ModelAttribute("task")
+//    public Task populateTask() {
+//        Task task = new Task();
+//        return task;
+//    }
 }

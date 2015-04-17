@@ -4,13 +4,26 @@ import com.codex.busel.web.dao.UserDao;
 import com.codex.busel.web.model.User;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
+    @PersistenceContext
+    private EntityManager em;
+
     @Override
     public List<User> findDevelopers() {
         return em.createQuery("select u from User u where u.role = 'DEVELOPER'", User.class).getResultList();
+    }
+
+    @Override
+    public List<User> findAll() {
+        Query query = em.createQuery("SELECT u FROM User u");
+        List<User> users = query.getResultList();
+        return users;
     }
 }
