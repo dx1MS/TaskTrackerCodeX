@@ -9,7 +9,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "USER")
-public class User implements UserDetails{
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class User implements UserDetails{
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "user_role_id"))
+            inverseJoinColumns = @JoinColumn(name = "user_role_id"))
     private Set<UserRole> userRoles = new HashSet<UserRole>();
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -36,12 +36,12 @@ public class User implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
+//        List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
 
-        for(UserRole userRole : userRoles){
-            result.add(new SimpleGrantedAuthority(userRole.getNameRole().name()));
-        }
-        return result;
+//        for (UserRole userRole : userRoles) {
+//            result.add(new SimpleGrantedAuthority(userRole.getNameRole().name()));
+//        }
+        return userRoles;
     }
 
     @Override
@@ -113,30 +113,19 @@ public class User implements UserDetails{
         return userName;
     }
 
-//    public void addUserRoles (NameRole nameRole){
-//        userRoles.add(nameRole);
-//    }
-}
-//    @Column(name = "ROLE")
-//    private String role;
+    public void addUserRoles(UserRole role) {
+        userRoles.add(role);
+    }
 
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+}
 //    @JoinColumn(name = "USER_ROLE_ID")
 //    @ManyToOne // todo (fetch = FetchType.LAZY,optional=true)
 //    private Role role;
 
-//    public Role getRole() {
-//        return role;
-//    }
 //
 //    public void setRole(Role role) {
-//        this.role = role;
-//    }
-
-
-//    public String getRole() {
-//        return role;
-//    }
-//
-//    public void setRole(String role) {
 //        this.role = role;
 //    }

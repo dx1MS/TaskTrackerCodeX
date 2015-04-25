@@ -1,5 +1,7 @@
 package com.codex.busel.web.model;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,15 +9,24 @@ import java.util.Set;
 //User-Role
 @Entity
 @Table(name = "ROLE")
-public class UserRole {
+public class UserRole implements GrantedAuthority {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "USER_ROLE_ID")
     private Long userRoleId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "ROLE_NAME")
     private NameRole nameRole;
+
+    public Long getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(Long userRoleId) {
+        this.userRoleId = userRoleId;
+    }
 
     @Column(name = "USER_ID")
     @ManyToMany
@@ -29,12 +40,17 @@ public class UserRole {
         return nameRole;
     }
 
-    public void setNameRole(NameRole NameRole) {
+    public void setNameRole(NameRole nameRole) {
         this.nameRole = nameRole;
     }
 
     public void setUserList(Set<User> userList) {
         this.userList = userList;
+    }
+
+    @Override
+    public String getAuthority() {
+        return nameRole.getNameRole();
     }
 //    @Override
 //    public boolean equals(Object o) {

@@ -1,6 +1,7 @@
 package com.codex.busel.web.model;
 
 public enum NameRole {
+
     MANAGER("Менеджер"),
     DEVELOPER("Разработчик"),
     TEAMLEAD("СтаршийРазработчик");
@@ -12,6 +13,6 @@ public enum NameRole {
     }
 
     public String getNameRole() {
-        return name;
+        return name();
     }
 }

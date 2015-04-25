@@ -16,7 +16,8 @@
     <!-- <property name="url" value="jdbc:h2:file:h2\db -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
-        <property name="url" value="jdbc:h2:file:d:/doc/java/CodeX/project/TaskTrackerCodeX/codex"/>
+        <!--<property name="url" value="jdbc:h2:file:d:/doc/java/CodeX/project/TaskTrackerCodeX/codex;AUTO_SERVER=TRUE"/>-->
+        <property name="url" value="jdbc:h2:file:d:\doc\java\CodeX\project\TaskTrackerCodeX\codex;AUTO_SERVER=TRUE"/>
         <property name="username" value="root"/>
         <property name="password" value="password"/>
     </bean>
@@ -26,9 +27,9 @@
         <!--<jdbc:script location="classpath:com/codex/busel/web/sql/db-test-data.sql"/>-->
     <!--</jdbc:initialize-database>-->
     <!--тру-->
-    <!--<jdbc:embedded-database id="dataSource" type="H2">-->
-        <!--<jdbc:script location="classpath:db-schema.sql"/>-->
-        <!--<jdbc:script location="classpath:db-test-data.sql"/>-->
+    <!--<jdbc:embedded-database id="dataSource" type="H2"/>-->
+        <!--<jdbc:script location="classpath:com/codex/busel/web/sql/db-schema.sql"/>-->
+        <!--<jdbc:script location="classpath:com/codex/busel/web/sql/db-test-data.sql"/>-->
     <!--</jdbc:embedded-database>-->
 
     <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
@@ -43,11 +44,8 @@
     <context:component-scan base-package="com.codex.busel.web"/>
     <!--<jpa:repositories base-package="com.codex.busel.model"> </jpa:repositories>-->
 
-    <bean id="entityManagerFactory"
-          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
         </property>
@@ -58,7 +56,6 @@
                 <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>-->
             </props>
         </property>
-
         <property name="packagesToScan" value="com.codex.busel.web.model"/>
     </bean>
 

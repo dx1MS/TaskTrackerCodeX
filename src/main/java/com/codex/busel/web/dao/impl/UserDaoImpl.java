@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -17,7 +18,7 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
     @Override
     public List<User> findDevelopers() {
-        return em.createQuery("select u from User u where u.role = 'DEVELOPER'", User.class).getResultList();
+        return em.createQuery("select u from USER u where u.role = 'DEVELOPER'", User.class).getResultList();
     }
 
     @Override
@@ -26,4 +27,20 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
         List<User> users = query.getResultList();
         return users;
     }
+
+    @Override
+    public User findByName(String username) {
+        List<User> users;
+
+        users = em.createQuery("SELECT u from User u where userName=?")
+                .setParameter(1, username).getResultList();
+
+        if (users != null && users.size() > 0) {
+            return users.get(0);
+        } else {
+            return null;
+        }
+    }
+
+
 }

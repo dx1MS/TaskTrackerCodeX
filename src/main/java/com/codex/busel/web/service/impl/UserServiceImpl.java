@@ -6,17 +6,29 @@ import com.codex.busel.web.service.UserService;
 import org.hibernate.SessionFactory;
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+@Named
 @Service
 @Transactional
-public class UserServiceImpl implements UserDetailsService, UserService {
+public class UserServiceImpl implements UserService,
+//        UserDetailsService,
+        AuthenticationProvider {
 
     @Autowired
     private SessionFactory sessionFactory;
@@ -60,17 +72,46 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return null;
     }
 
+//    @Override
+//    @Transactional
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//
+//        Query query = sessionFactory.getCurrentSession().createQuery("from user u where u.user_name=:username");
+//        query.setParameter("username", username);
+//        User result = (User) query.uniqueResult();
+//
+//        if (result == null){
+//            throw new UsernameNotFoundException("username: " + username + " not found");
+//        }
+//        return result;
+//    }
+
     @Override
     @Transactional
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        Query query = sessionFactory.getCurrentSession().createQuery("from user u where u.user_name=:username");
-        query.setParameter("username", username);
-        User result = (User) query.uniqueResult();
+        String username = authentication.getName();
+        String password = (String) authentication.getCredentials();
 
-        if (result == null){
-            throw new UsernameNotFoundException("username: " + username + " not found");
+        User user = userDao.findByName(username);
+
+        if (user == null) {
+            throw new BadCredentialsException("Username not found.");
         }
-        return result;
+
+        if (!password.equals(user.getPassword())) {
+            throw new BadCredentialsException("Wrong password.");
+        }
+
+        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+
+        return new UsernamePasswordAuthenticationToken(user, password, authorities);
+
+    }
+
+    @Override
+    public boolean supports(Class<?> aClass) {
+        return aClass.equals(UsernamePasswordAuthenticationToken.class);
+
     }
 }

@@ -12,5 +12,6 @@ public interface UserDao extends GenericDao<User>{
 //    void merge(User user);
 //
 //    List<Task> findAll();
+    User findByName(String name);
 
 }
