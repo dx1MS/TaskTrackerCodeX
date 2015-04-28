@@ -1,8 +1,6 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-             xmlns:context="http://www.springframework.org/schema/context"
              xmlns:beans="http://www.springframework.org/schema/beans"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xmlns:tx="http://www.springframework.org/schema/tx"
              xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
@@ -15,7 +13,6 @@
     <http auto-config="true" use-expressions="true">
             <intercept-url pattern="/manager**" access="hasRole('MANAGER')" />
             <intercept-url pattern="/developer**" access="hasRole('DEVELOPER')" />
-
         <!-- access denied page -->
         <access-denied-handler error-page="/403" />
 
@@ -26,7 +23,8 @@
                 authentication-success-handler-ref="myAuthenticationSuccessHandler"
                 username-parameter="username"
                 password-parameter="password" />
-        <logout logout-success-url="/login?logout"  />
+        <logout logout-success-url="/login" logout-url="/j_spring_security_logout" />
+        <!--<logout logout-success-url="/login?logout"  />-->
         <!--<remember-me user-service-ref="UserService" key="task_key" />-->
         <!-- enable csrf protection -->
         <csrf/>

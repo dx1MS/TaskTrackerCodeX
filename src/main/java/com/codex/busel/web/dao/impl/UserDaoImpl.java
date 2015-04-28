@@ -18,7 +18,9 @@ public class UserDaoImpl extends GenericDaoImpl<User> implements UserDao {
 
     @Override
     public List<User> findDevelopers() {
-        return em.createQuery("select u from USER u where u.role = 'DEVELOPER'", User.class).getResultList();
+        //return em.createQuery("select u from USER u where u.role = 'DEVELOPER'", User.class).getResultList();
+        //TODO WTF!???
+        return em.createQuery("select u from USER u JOIN USERS_ROLES ur ON u.USER_ID = ur.USER_ID where ur.USER_ROLE_ID = (SELECT USER_ROLE_ID from ROLE where ROLE_NAME = 'DEVELOPER')", User.class).getResultList();
     }
 
     @Override

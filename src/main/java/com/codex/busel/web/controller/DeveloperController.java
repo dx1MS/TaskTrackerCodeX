@@ -14,17 +14,16 @@ public class DeveloperController {
     @Autowired
     private TaskService taskService;
 
-    @RequestMapping("/")
-    public String start() {
-        return "tasks";
-    }
+//    @RequestMapping("/")
+//    public String start() {
+//        return "tasks";
+//    }
 
-    @RequestMapping(value = "/tasks", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String printFirstDev (ModelMap model) {
         model.addAttribute("message", "Your tasks:");
 
         model.addAttribute("tasks", taskService.findAll());
-        return "projects";
+        return "tasks";
     }
-
 }

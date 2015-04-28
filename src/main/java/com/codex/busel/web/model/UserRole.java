@@ -17,7 +17,7 @@ public class UserRole implements GrantedAuthority {
     private Long userRoleId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE_NAME")
+    @Column(name = "ROLE_NAME", unique = true)
     private NameRole nameRole;
 
     public Long getUserRoleId() {

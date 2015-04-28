@@ -29,12 +29,12 @@ public class ManagerController {
     @Autowired
     private TaskService taskService;
 
-    @RequestMapping("/")
-    public String start() {
-        return "projects";
-    }
+//    @RequestMapping("/")
+//    public String start() {
+//        return "projects";
+//    }
 
-    @RequestMapping(value = "/projects", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
 //		em.flush();
