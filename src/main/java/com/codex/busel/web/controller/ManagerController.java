@@ -14,7 +14,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("manager1")
 public class ManagerController {
 
     @Autowired
@@ -22,9 +22,6 @@ public class ManagerController {
 
     @Autowired
     private UserService userService;
-
-//    @Autowired
-//    private TaskDao taskDao;
 
     @Autowired
     private UserDao userDao;
@@ -37,20 +34,18 @@ public class ManagerController {
         return "projects";
     }
 
-    @RequestMapping(value = "projects", method = RequestMethod.GET)
+    @RequestMapping(value = "/projects", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
         model.addAttribute("message", "Hello world!");
 //		em.flush();
-
 //		Project projectFetched = projectDao.findById(1L);
-
 //		model.addAttribute("tasks", projectDao.findTasksByProjectId(projectFetched.getProjectId()));
 //		model.addAttribute("tasks", projectDao.findAll());
         model.addAttribute("projects", projectService.findAll());
         return "projects";
     }
 
-    @RequestMapping(value = "addProject", method = RequestMethod.GET)
+    @RequestMapping(value = "/addProject", method = RequestMethod.GET)
     public String addProject(ModelMap model, @ModelAttribute("project") Project project) {
         project.setProjectName("Enter your project name");
         project = projectService.merge(project);
@@ -140,62 +135,62 @@ public class ManagerController {
         return "projectDetails";
     }
 
-	@PostConstruct
-	public void init() {
-        // man1, dev1
-        User user1 = new User();
-        User user2 = new User();
-        user1.setUserName("man1");
-        user2.setUserName("dev1");
-        user1.setPassword("1");
-        user2.setPassword("1");
-        user1.setEnabled(1);
-        user2.setEnabled(1);
-        userService.merge(user1);
-        userService.merge(user2);
-
-        //ROLE
-        UserRole roleMan = new UserRole();
-        UserRole roleDev = new UserRole();
-        roleDev.setNameRole(NameRole.DEVELOPER);
-        roleMan.setNameRole(NameRole.MANAGER);
-
-        //merge Role?
-
-        user1.addUserRoles(roleMan);
-        user2.addUserRoles(roleDev);
-        userService.merge(user1);
-        userService.merge(user2);
-
-        // Project1, Project2Q
-		Project project1 = new Project();
-        Project project2 = new Project();
-		project1.setProjectName("Project1");
-        project2.setProjectName("Project2");
-        projectService.merge(project1);
-        projectService.merge(project2);
-
-        // Task11_descr - Project1, null(user)
-        //         Task12_descr - Project1, null
-        //         Task21_descr - Project2, null
-		Task task11 = new Task();
-        Task task12 = new Task();
-		task11.setDescr("Task11_descr");
-        task12.setDescr("Task12_descr");
-        //
-        project1.addTask(task11);
-        project1.addTask(task12);
-        taskService.merge(task11);
-        taskService.merge(task12);
-
-		Task task21 = new Task();
-		task21.setDescr("Task21_descr");
-		project2.addTask(task21);
-        taskService.merge(task21);
-
-        projectService.merge(project1);
-        projectService.merge(project2);
-	}
+//	@PostConstruct
+//	public void init() {
+//        // man1, dev1
+//        User user1 = new User();
+//        User user2 = new User();
+//        user1.setUserName("man1");
+//        user2.setUserName("dev1");
+//        user1.setPassword("1");
+//        user2.setPassword("1");
+//        user1.setEnabled(1);
+//        user2.setEnabled(1);
+//        userService.merge(user1);
+//        userService.merge(user2);
+//
+//        //ROLE
+//        UserRole roleMan = new UserRole();
+//        UserRole roleDev = new UserRole();
+//        roleDev.setNameRole(NameRole.DEVELOPER);
+//        roleMan.setNameRole(NameRole.MANAGER);
+//
+//        //merge Role?
+//
+//        user1.addUserRoles(roleMan);
+//        user2.addUserRoles(roleDev);
+//        userService.merge(user1);
+//        userService.merge(user2);
+//
+//        // Project1, Project2Q
+//		Project project1 = new Project();
+//        Project project2 = new Project();
+//		project1.setProjectName("Project1");
+//        project2.setProjectName("Project2");
+//        projectService.merge(project1);
+//        projectService.merge(project2);
+//
+//        // Task11_descr - Project1, null(user)
+//        //         Task12_descr - Project1, null
+//        //         Task21_descr - Project2, null
+//		Task task11 = new Task();
+//        Task task12 = new Task();
+//		task11.setDescr("Task11_descr");
+//        task12.setDescr("Task12_descr");
+//        //
+//        project1.addTask(task11);
+//        project1.addTask(task12);
+//        taskService.merge(task11);
+//        taskService.merge(task12);
+//
+//		Task task21 = new Task();
+//		task21.setDescr("Task21_descr");
+//		project2.addTask(task21);
+//        taskService.merge(task21);
+//
+//        projectService.merge(project1);
+//        projectService.merge(project2);
+//	}
 
     @ModelAttribute("project")
     public Project populateProject() {

@@ -25,7 +25,7 @@
     </table>
 </c:if>
 
-<a href="/addProject">Create project</a>
+<a href="*/addProject">Create project</a>
 
 </body>
 </html>
